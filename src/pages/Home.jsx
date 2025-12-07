@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import data from "../data/dummy.json";
+import RecipeCard from "../components/RecipesCard";
 
 export default function Home() {
 
@@ -20,7 +21,7 @@ export default function Home() {
           </p>
           <a
             href="#Menu"
-            className="bg-org text-white p-[20px] px-[40px] shadow-xl hover:shadow-2xl text-[20px] font-bold rounded-2xl transition-all ease-in-out duration-500"
+            className="bg-org text-white p-5 px-10 shadow-xl hover:shadow-2xl text-[20px] font-bold rounded-2xl transition-all ease-in-out duration-500"
           >
             Jelajahi Resep
           </a>
@@ -50,57 +51,17 @@ export default function Home() {
             <h1 className="font-bold text-[46px]">Temukan & Ciptakan</h1>
             <p className="text-[24px] opacity-50">Resep Rekomendasi</p>
           </div>
-          <a
-            href="#section2"
-            className="bg-org text-white py-[10px] px-[40px] shadow-xl hover:shadow-2xl text-[20px] font-bold rounded-2xl transition-all ease-in-out duration-500 align-middle"
+          <Link
+            to={"/recipes"}
+            className="bg-org text-white py-2.5 px-10 shadow-xl hover:shadow-2xl text-[20px] font-bold rounded-2xl transition-all ease-in-out duration-500 align-middle"
           >
             Lihat Semua
-          </a>
+          </Link>
         </div>
-        <div className="items-wrapper flex flex-row flex-wrap justify-between mt-5 gap-10 justify-center items-center">
-          {data.recipes.map((v, key) => {
+        <div className="items-wrapper flex flex-row flex-wrap mt-5 gap-10 justify-center items-center">
+          {data.recipes.slice(0, 3).map((v, key) => {
             return (
-              <Link
-                key={key}
-                to={`/detail/${v.id}`}
-                className="item w-[calc(100%/3.2)] h-[370px] shadow-xl hover:shadow-2xl hover:translate-y-[-5px] cursor-pointer transition-all ease-in-out duration-300 rounded-xl bg-white"
-              >
-                <img
-                  src={`${v.image}`}
-                  className="h-[200px] rounded-t-xl w-full object-cover object-center"
-                  alt=""
-                />
-                <div className="detail flex flex-row text-grn justify-around py-2">
-                  <div className="detail-item flex flex-row gap-2">
-                    <img
-                      className="h-[20px] w-[20px]"
-                      src="/icons/vector/waktu.png"
-                      alt=""
-                    />
-                    <p>{v.cookTime} Menit</p>
-                  </div>
-                  <div className="detail-item flex flex-row gap-2">
-                    <img
-                      className="h-[20px] w-[20px]"
-                      src="/icons/vector/orang.png"
-                      alt=""
-                    />
-                    <p>{v.servings} Porsi</p>
-                  </div>
-                  <div className="detail-item flex flex-row gap-2">
-                    <img
-                      className="h-[20px] w-[20px]"
-                      src="/icons/vector/level.png"
-                      alt=""
-                    />
-                    <p>{v.difficulty}</p>
-                  </div>
-                </div>
-                <div className="title m-5">
-                  <h1 className="font-bold text-3xl">{v.title}</h1>
-                  <p className="text-org underline text-lg">Lihat Resep</p>
-                </div>
-              </Link>
+              <RecipeCard key={key} {...v}/>
             );
           })}
         </div>

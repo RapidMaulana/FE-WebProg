@@ -22,7 +22,7 @@ export default function Details() {
               return (
                 <>
                   <img
-                    className="w-[20px] h-[20px]"
+                    className="w-5 h-5"
                     src="/icons/rating/Star.png"
                     alt=""
                   />
@@ -32,7 +32,7 @@ export default function Details() {
               return (
                 <>
                   <img
-                    className="w-[20px] h-[20px]"
+                    className="w-5 h-5"
                     src="/icons/rating/StarGrey.png"
                     alt=""
                   />
@@ -48,7 +48,7 @@ export default function Details() {
           <div className="persiapan-wrapper flex flex-row justify-around bg-wht2 max-w-[60%] max-h-[200px] rounded-xl mx-auto  my-5 p-10">
             <div className="item text-center flex w-[calc(100%/3)] flex-col items-center gap-2">
               <img
-                className="w-[64px] h-[64px] object-cover"
+                className="w-16 h-16 object-cover"
                 src="/icons/recipes/bake.png"
                 alt=""
               />
@@ -57,9 +57,9 @@ export default function Details() {
                 {res.prepTime} Menit
               </p>
             </div>
-            <div className="item border-l-1 border-r-1 w-[calc(100%/3)] flex flex-col items-center gap-2">
+            <div className="item border-l border-r w-[calc(100%/3)] flex flex-col items-center gap-2">
               <img
-                className="w-[64px] h-[64px] object-cover"
+                className="w-16 h-16 object-cover"
                 src="/icons/recipes/cooking.png"
                 alt=""
               />
@@ -70,7 +70,7 @@ export default function Details() {
             </div>
             <div className="item flex flex-col w-[calc(100%/3)] items-center gap-2">
               <img
-                className="w-[64px] h-[64px] object-cover"
+                className="w-16 h-16 object-cover"
                 src="/icons/recipes/serving.png"
                 alt=""
               />

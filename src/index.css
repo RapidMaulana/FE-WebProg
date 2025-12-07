@@ -49,3 +49,23 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+.underline-link {
+  position: relative;
+  display: inline-block; 
+}
+
+.underline-link::after {
+  content: '';
+  position: absolute;
+  width: 0%; 
+  height: 2px; 
+  bottom: 0;
+  left: 0;
+  background-color: black; 
+  transition: width 0.3s ease-in-out; 
+}
+
+.underline-link:hover::after {
+  width: 100%;
+}

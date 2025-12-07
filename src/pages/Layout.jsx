@@ -4,21 +4,23 @@ import { Outlet } from "react-router-dom";
 export default function Layout() {
   return (
     <div className="layout">
-      <nav className=" nav flex flex-row font-sen text-[20px] justify-between p-[10px] px-[40px] items-center bg-wht">
-        <img
-          className="h-[50px] object-contain"
-          src="/favicon.png"
-          alt="logo"
-        />
-        <ul className="flex flex-row gap-[40px] font-medium">
+      <nav className=" nav flex flex-row font-sen text-[20px] justify-between p-2.5 px-10 items-center bg-wht">
+        <Link to={"/"}>
+          <img
+            className="h-[50px] object-contain"
+            src="/favicon.png"
+            alt="logo"
+          />
+        </Link>
+        <ul className="flex flex-row gap-10 font-medium">
           <li>
-            <Link to={"/"}>Beranda</Link>
+            <Link className="underline-link" to={"/"}>Beranda</Link>
           </li>
           <li>
-            <Link to={"/recipes"}>Resep</Link>
+            <Link className="underline-link" to={"/recipes"}>Resep</Link>
           </li>
           <li>
-            <Link to={"/about"}>Tentang Kami</Link>
+            <Link className="underline-link" to={"/about"}>Tentang Kami</Link>
           </li>
         </ul>
         <Link to={"/login"}>
@@ -28,26 +30,26 @@ export default function Layout() {
         </Link>
       </nav>
 
-      <div className="children flex flex-col items-center w-full min-h-[100vh]">
+      <div className="children flex flex-col items-center w-full min-h-screen">
         <Outlet />
       </div>
 
-      <footer className="relative bottom-0 footer w-full bg-wht z-10 flex flex-row font-sen text-[16px] text-black justify-between p-[40px] items-center">
+      <footer className="relative bottom-0 footer w-full bg-wht z-10 flex flex-row font-sen text-[16px] text-black justify-between p-10 items-center">
         <div className="item-lists flex flex-row gap-[100px]">
             <ul>
                 <h1 className="font-semibold text-[24px] mb-5">Menu</h1>
                 <li>
-                    <Link to={"/"}>
+                    <Link className="underline-link" to={"/"}>
                         Beranda
                     </Link>
                 </li>
                 <li>
-                    <Link to={"/recipes"}>
+                    <Link className="underline-link" to={"/recipes"}>
                         Resep
                     </Link>
                 </li>
                 <li>
-                    <Link to={"/about"}>
+                    <Link className="underline-link" to={"/about"}>
                         Tentang Kami
                     </Link>
                 </li>
@@ -55,12 +57,12 @@ export default function Layout() {
             <ul>
                 <h1 className="font-semibold text-[24px] mb-5">Kategori</h1>
                 <li>
-                    <Link to={"/recipes"}>
+                    <Link className="underline-link" to={"/recipes"}>
                         Makanan Berat
                     </Link>
                 </li>
                 <li>
-                    <Link to={"/recipes"}>
+                    <Link className="underline-link" to={"/recipes"}>
                         Makanan Ringan
                     </Link>
                 </li>
