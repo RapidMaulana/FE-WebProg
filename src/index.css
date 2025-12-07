@@ -1,18 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap');
 @import "tailwindcss";
 
 @theme{
-  --font-lato: "Lato", sans-serif;
-  --font-bitter: "Bitter", serif;
+  --font-sen: "Sen", sans-serif;
 
-  --color-prim: #F9C784;
-  --color-prim2: #F3D9B1;
-  --color-prim3: #EA780F;
+  --color-grn: rgba(11, 93, 62, 1);
+  --color-grn2: rgba(177, 186, 118, 1);
+  --color-grn3: rgba(194, 217, 176, 1);
+  
+  --color-org: rgba(234, 120, 15, 1);
+  --color-org2: rgba(249, 199, 132, 1);
+  
+  --color-wht: rgba(236, 231, 226, 1);
+  --color-wht2: rgba(243, 243, 243, 1);
 
+  --color-bg: #fffded;
+
+  @keyframes bouncing {
+    0%, 100% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+  }
+
+  --animate-bouncing: bouncing 2s ease-in-out infinite;
+}
+
+html{
+  scroll-behavior: smooth;
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -23,7 +43,8 @@
 }
 
 body {
-  background-color: var(--color-prim2);
+  scroll-behavior: smooth;
+  background-color: white;
 
   min-width: 320px;
   min-height: 100vh;
