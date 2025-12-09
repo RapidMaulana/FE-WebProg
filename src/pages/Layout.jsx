@@ -23,7 +23,7 @@ export default function Layout() {
             <Link className="underline-link" to={"/about"}>Tentang Kami</Link>
           </li>
         </ul>
-        <Link to={"/login"}>
+        <Link to={"/auth/login"}>
           <p className="border-2 px-8 py-2 rounded-lg hover:bg-black hover:text-wht transition all ease-in-out">
             Login
           </p>

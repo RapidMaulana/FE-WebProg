@@ -10,7 +10,7 @@ export default function RecipeCard({
 }) {
   return (
     <Link
-      to={`/detail/${id}`}
+      to={`/recipes/${id}`}
       className="item w-[calc(100%/3.2)] h-[370px] shadow-xl hover:shadow-2xl hover:translate-y-[-5px] cursor-pointer transition-all ease-in-out duration-300 rounded-xl bg-white"
     >
       <img
