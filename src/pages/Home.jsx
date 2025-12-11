@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-import data from "../data/dummy.json";
 import RecipeCard from "../components/RecipesCard";
 
+import { getAllRecipes } from "../api/services";
+
 export default function Home() {
+  const [data, setData] = useState([]);
+
+  useEffect(() =>{
+    getAllRecipes()
+    .then((response) => setData(response.data.data))
+    .catch((response) => console.log(response))
+  },[])
 
   return (
     <>
@@ -59,7 +68,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="items-wrapper flex flex-row flex-wrap mt-5 gap-10 justify-center items-center">
-          {data.recipes.slice(0, 3).map((v, key) => {
+          {data.slice(0, 3).map((v, key) => {
             return (
               <RecipeCard key={key} {...v}/>
             );

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function RecipeCard({
   id,
   image,
-  cookTime,
+  cook_time,
   servings,
   difficulty,
   title,
@@ -25,7 +25,7 @@ export default function RecipeCard({
             src="/icons/vector/waktu.png"
             alt=""
           />
-          <p>{cookTime} Menit</p>
+          <p>{cook_time} Menit</p>
         </div>
         <div className="detail-item flex flex-row gap-2">
           <img

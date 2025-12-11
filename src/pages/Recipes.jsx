@@ -1,10 +1,20 @@
 import RecipeCard from "../components/RecipesCard";
 
-import data from "../data/dummy.json";
+import { getAllRecipes } from "../api/services";
+
+import { useState, useEffect } from "react";
 
 export default function Recipes() {
-  const dataCamilan = data.recipes.filter((v) => v.category === "camilan");
-  const dataMakanan = data.recipes.filter(
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getAllRecipes()
+      .then((response) => setData(response.data.data))
+      .catch((response) => console.log(response));
+  }, []);
+
+  const dataCamilan = data.filter((v) => v.category === "camilan");
+  const dataMakanan = data.filter(
     (v) => v.category === "hidangan utama"
   );
 
