@@ -29,6 +29,8 @@ export default function Register() {
             <input type="text" placeholder="example@gmail.com" />
             <label htmlFor="username">Password</label>
             <input type="password" placeholder="*****" />
+            <label htmlFor="username">Confirm Password</label>
+            <input type="password" placeholder="*****" />
           </div>
           <Link
             to={"/"}
