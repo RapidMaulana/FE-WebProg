@@ -39,6 +39,11 @@ export const browserRoutes = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "profile",
+        element: <Profile />
+      },
+      
     ],
   },
   {
