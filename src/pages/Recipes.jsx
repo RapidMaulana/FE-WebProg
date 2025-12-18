@@ -45,7 +45,7 @@ export default function Recipes() {
           </p>
           <div className="items-wrapper flex flex-row flex-wrap mt-5 gap-10 justify-center items-center">
             {dataMakanan.map((v, i) => {
-              return <RecipeCard {...v} />;
+              return <RecipeCard key={i} {...v} />;
             })}
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function Recipes() {
           </p>
           <div className="items-wrapper flex flex-row flex-wrap mt-5 gap-10 justify-center items-center">
             {dataCamilan.map((v, i) => {
-              return <RecipeCard {...v} />;
+              return <RecipeCard key={i} {...v} />;
             })}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useCallback } from "react";
+import instance from "../api/api_instance";
 import {
   login,
   logout,
@@ -6,7 +7,7 @@ import {
   isAuthenticated,
   getAuthToken,
   setAuthToken,
-} from "../services";
+} from "../api/auth_services";
 
 export const AuthContext = createContext();
 
@@ -19,13 +20,26 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const loadUser = async () => {
       try {
-        if (isAuthenticated()) {
+        // Cek token dari localStorage
+        const token = getAuthToken();
+        console.log("Token ditemukan:", !!token);
+        
+        if (token) {
+          // Set token di axios header sebelum request
+          instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          
+          // Tunggu sebentar agar header terupdate
+          await new Promise(resolve => setTimeout(resolve, 100));
+          
           const userData = await getProfile();
+          console.log("User loaded successfully:", userData);
           setUser(userData);
+          setError(null);
         }
       } catch (err) {
-        console.error("Failed to load user:", err);
-        setAuthToken(null);
+        console.error("Failed to load user:", err.response?.data || err.message);
+        setAuthToken(null); // Clear invalid token
+        setUser(null);
       } finally {
         setLoading(false);
       }
@@ -39,6 +53,11 @@ export const AuthProvider = ({ children }) => {
       setError(null);
       const userData = await login({ email, password });
       setUser(userData);
+      // Token sudah disimpan di services.js, tapi kita pastikan lagi
+      const token = getAuthToken();
+      if (token) {
+        instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      }
       return userData;
     } catch (err) {
       const errorMessage = err.response?.data?.message || "Login gagal";
