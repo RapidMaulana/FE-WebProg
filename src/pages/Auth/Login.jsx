@@ -13,9 +13,8 @@ export default function Login() {
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
-  // Initialize form data dengan proper default
   useEffect(() => {
-    // Cek jika formData kosong atau undefined
+
     if (!formData || Object.keys(formData).length === 0) {
       setFormData({
         email: "",
@@ -57,9 +56,9 @@ export default function Login() {
 
     try {
       await login(formData.email, formData.password);
-      // Redirect ke home setelah login berhasil
+
       navigate("/");
-      clearForm(); // Clear form data setelah login berhasil
+      clearForm(); 
     } catch (err) {
       const errorMessage =
         err.response?.data?.message ||

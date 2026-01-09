@@ -125,7 +125,7 @@ export default function AddRecipe() {
     };
   
     return (
-      <div className="add-recipe-section max-w-4xl">
+      <div className="add-recipe-section w-full">
         {success && (
           <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
             {success}

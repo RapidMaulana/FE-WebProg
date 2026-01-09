@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useForm } from "../../context/FormContext";
 import { useNavigate } from "react-router-dom";
-import { getWishlistRecipes, removeFromWishlist } from "../../api/services";
-import { updatePassword, updateProfile } from "../../api/auth_services";
+import { getWishlistRecipes } from "../../api/services";
 
 import RecipeCard from "../../components/RecipesCard";
 
@@ -12,38 +11,23 @@ import EditProfile from "../../components/profile/EditProfile";
 
 export default function Profile() {
   const navigate = useNavigate();
-  const { user, isAuthenticated, loading: authLoading, setUser } = useAuth();
+  const { user, isAuthenticated, loading: authLoading, logout } = useAuth();
   const {
     formData: profileFormData,
-    updateField: updateProfileField,
     setFormData: setProfileFormData,
-    clearForm: clearProfileForm,
   } = useForm("editProfile");
   const {
     formData: passwordFormData,
-    updateField: updatePasswordField,
     setFormData: setPasswordFormData,
-    clearForm: clearPasswordForm,
   } = useForm("changePassword");
 
   const [menuState, setMenuState] = useState(0);
 
-  // Informasi State
-  const [editInfoMode, setEditInfoMode] = useState(false);
 
   // Wishlist State
   const [wishlist, setWishlist] = useState([]);
   const [wishlistLoading, setWishlistLoading] = useState(false);
   const [wishlistError, setWishlistError] = useState(null);
-
-  // UI State
-  const [profileLoading, setProfileLoading] = useState(false);
-  const [profileError, setProfileError] = useState(null);
-  const [profileSuccess, setProfileSuccess] = useState(null);
-  const [passwordLoading, setPasswordLoading] = useState(false);
-  const [passwordError, setPasswordError] = useState(null);
-  const [passwordSuccess, setPasswordSuccess] = useState(null);
-  const [showPassword, setShowPassword] = useState(false);
 
   // Redirect if not authenticated
   useEffect(() => {
@@ -96,68 +80,13 @@ export default function Profile() {
     }
   };
 
-  const handleProfileInputChange = (e) => {
-    const { name, value } = e.target;
-    updateProfileField(name, value);
-  };
-
-  const handleProfileSubmit = async (e) => {
-    e.preventDefault();
-    setProfileLoading(true);
-    setProfileError(null);
-    setProfileSuccess(null);
-
+  const handleLogout = async () => {
     try {
-      const updatedUser = await updateProfile({
-        nama: profileFormData?.nama,
-        email: profileFormData?.email,
-        nomor_telepon: profileFormData?.nomor_telepon,
-        alamat: profileFormData?.alamat,
-      });
-      setUser(updatedUser);
-      setProfileSuccess("Profile berhasil diperbarui!");
-      setEditInfoMode(false);
-      setTimeout(() => setProfileSuccess(null), 3000);
+      await logout();
+      navigate("/");
+      setShowDropdown(false);
     } catch (err) {
-      setProfileError(err.response?.data?.message || "Gagal update profile");
-    } finally {
-      setProfileLoading(false);
-    }
-  };
-
-  const handlePasswordInputChange = (e) => {
-    const { name, value } = e.target;
-    updatePasswordField(name, value);
-  };
-
-  const handlePasswordSubmit = async (e) => {
-    e.preventDefault();
-    setPasswordLoading(true);
-    setPasswordError(null);
-    setPasswordSuccess(null);
-
-    try {
-      await updatePassword({
-        current_password: passwordFormData?.current_password,
-        new_password: passwordFormData?.new_password,
-        new_password_confirmation: passwordFormData?.new_password_confirmation,
-      });
-      setPasswordSuccess("Password berhasil diubah!");
-      clearPasswordForm();
-      setTimeout(() => setPasswordSuccess(null), 3000);
-    } catch (err) {
-      setPasswordError(err.response?.data?.message || "Gagal update password");
-    } finally {
-      setPasswordLoading(false);
-    }
-  };
-
-  const handleRemoveFromWishlist = async (recipeId) => {
-    try {
-      await removeFromWishlist({ recipeId });
-      setWishlist(wishlist.filter((r) => r.id !== recipeId));
-    } catch (err) {
-      console.error("Remove error:", err);
+      console.error("Logout error:", err);
     }
   };
 
@@ -168,7 +97,7 @@ export default function Profile() {
       case 0:
         // Informasi
         return (
-          <div className="info-section max-w-2xl">
+          <div className="info-section w-full">
             <div className="bg-white shadow-lg rounded-lg p-8 space-y-6">
               <div className="grid grid-cols-2 gap-6">
                 <div>
@@ -220,7 +149,7 @@ export default function Profile() {
         // Wishlist
         return (
           <div className="wishlist-section">
-            {wishlistLoading && <p>Loading wishlist...</p>}
+            {wishlistLoading && <p className="w-full text-6xl font-bold text-center">Loading wishlist...</p>}
             {wishlistError && <p className="text-red-600">{wishlistError}</p>}
             {wishlist.length === 0 ? (
               <p className="text-gray-600">Wishlist kosong</p>

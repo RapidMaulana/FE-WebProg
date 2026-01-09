@@ -110,7 +110,7 @@ export default function EditProfile() {
   return (
     <div className="space-y-6">
       {/* Edit Profile Section */}
-      <div className="edit-profile-section max-w-2xl">
+      <div className="edit-profile-section w-full">
         {profileSuccess && (
           <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
             {profileSuccess}
@@ -221,7 +221,7 @@ export default function EditProfile() {
       </div>
 
       {/* Change Password Section */}
-      <div className="change-password-section max-w-2xl">
+      <div className="change-password-section w-full">
         {passwordSuccess && (
           <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
             {passwordSuccess}
